@@ -1,0 +1,38 @@
+.toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle:hover {
+    background: var(--glass-bg-hover);
+    color: var(--text-primary);
+    border-color: var(--glass-border-hover);
+}
+
+.toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.toggle:hover svg {
+    transform: rotate(20deg) scale(1.1);
+}
+
+/* Light mode specific adjustments */
+[data-theme="light"] .toggle {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .toggle:hover {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: var(--glass-border-hover);
+}

@@ -1,0 +1,202 @@
+/* ============================================
+   FOOTER - Theme-Aware with Separators
+   ============================================ */
+
+.footer {
+    position: relative;
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--glass-border);
+    padding: 5rem 0 3rem;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Brand Section */
+.brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo {
+    display: block;
+    margin-bottom: 1.25rem;
+}
+
+.logo img {
+    width: 180px;
+    height: auto;
+}
+
+.tagline {
+    max-width: 550px;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+/* Separator Line */
+.separator {
+    width: 100%;
+    max-width: 800px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--glass-border), var(--accent-indigo), var(--glass-border), transparent);
+    margin: 2rem 0;
+    opacity: 0.5;
+}
+
+/* Contact Bar - Horizontal */
+.contactBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.contactItem:hover {
+    color: var(--accent-indigo);
+}
+
+.contactItem svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    opacity: 0.85;
+}
+
+.contactItem:hover svg {
+    opacity: 1;
+}
+
+/* Links Grid - 3 Columns (2-3-2 layout) */
+.linksGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4rem;
+    margin: 1.5rem 0 2rem;
+    width: 100%;
+    max-width: 900px;
+}
+
+.linksColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.link {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.link:hover {
+    color: var(--accent-indigo);
+}
+
+/* Bottom */
+.bottom {
+    width: 100%;
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 1.5rem;
+}
+
+.bottom p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .footer {
+        padding: 4rem 0 2rem;
+    }
+
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .logo img {
+        width: 150px;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    .contactBar {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .linksGrid {
+        gap: 2.5rem;
+        max-width: 100%;
+    }
+
+    .separator {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 3rem 0 1.5rem;
+    }
+
+    .linksGrid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .tagline {
+        font-size: 0.9375rem;
+    }
+
+    .contactItem {
+        font-size: 0.9375rem;
+    }
+
+    .contactItem svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .link {
+        font-size: 0.9375rem;
+    }
+
+    .separator {
+        max-width: 200px;
+    }
+
+    .logo img {
+        width: 140px;
+    }
+}

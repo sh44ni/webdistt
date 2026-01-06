@@ -1,0 +1,121 @@
+.about {
+    overflow: hidden;
+    position: relative;
+    background: transparent;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.statsContainer {
+    position: sticky;
+    top: 120px;
+}
+
+.statsCard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.statNumber {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.statLabel {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.content {
+    max-width: 600px;
+}
+
+.title {
+    margin: 1rem 0 1.5rem;
+    color: var(--text-primary);
+}
+
+.description {
+    margin-bottom: 2rem;
+}
+
+.description p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.description p:last-child {
+    margin-bottom: 0;
+}
+
+.keyPoints {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.keyPoints li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+}
+
+.keyPoints svg {
+    color: var(--accent-blue);
+    flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .statsContainer {
+        position: relative;
+        top: 0;
+    }
+
+    .content {
+        max-width: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .statsCard {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .keyPoints {
+        grid-template-columns: 1fr;
+    }
+}

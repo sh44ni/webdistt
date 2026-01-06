@@ -31,6 +31,11 @@ export const metadata: Metadata = {
   description: "Transforming Ideas Into Digital Reality. We help businesses across Oman and the GCC build stunning websites, powerful software solutions, and digital experiences that drive growth and success.",
   keywords: ["web development", "software development", "Oman", "website design", "mobile apps", "digital agency"],
   authors: [{ name: "Web Distt" }],
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   openGraph: {
     title: "Web Distt | Web & Software Development in Oman",
     description: "Transforming Ideas Into Digital Reality",

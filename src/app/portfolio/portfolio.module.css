@@ -23,123 +23,578 @@
     background: var(--bg-secondary);
 }
 
-.filters {
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-bottom: 3rem;
-}
+/* Filters removed - using grid layout only */
 
-.filterBtn {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    background: var(--bg-primary);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 100px;
-    transition: all var(--transition-base);
-}
-
-.filterBtn:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-}
-
-.filterBtn.active {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-}
-
+/* Grid Layout */
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
 
+/* Card Styles - Matching Homepage */
 .card {
-    background: var(--bg-primary);
+    position: relative;
+    border-radius: 20px;
     overflow: hidden;
-    padding: 0;
-}
-
-.imageContainer {
-    aspect-ratio: 16/10;
-    overflow: hidden;
-}
-
-.imagePlaceholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--blob-1), var(--blob-2));
+    background: var(--bg-elevated);
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
-.imagePlaceholder span {
-    font-family: var(--font-heading);
-    font-size: 4rem;
-    font-weight: 700;
-    color: white;
-    opacity: 0.5;
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25), 0 0 50px rgba(99, 102, 241, 0.12);
+    border-color: var(--glass-border-hover);
 }
 
+/* Image Wrapper */
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.image {
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .image {
+    transform: scale(1.08);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, var(--bg-elevated) 100%);
+    pointer-events: none;
+}
+
+/* Content */
 .content {
-    padding: 1.5rem;
+    padding: 1.25rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .category {
     display: inline-block;
-    padding: 0.375rem 0.75rem;
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--accent);
     font-size: 0.75rem;
     font-weight: 600;
-    border-radius: 100px;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
     margin-bottom: 0.75rem;
-}
-
-.content h3 {
-    font-size: 1.125rem;
-    margin-bottom: 0.5rem;
-}
-
-.client {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-    margin-bottom: 0.5rem;
+    line-height: 1.2;
 }
 
 .description {
     font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    flex-grow: 1;
     margin-bottom: 1rem;
 }
 
+/* Technologies */
 .technologies {
     display: flex;
+    gap: 0.75rem;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
-.tech {
-    padding: 0.25rem 0.625rem;
-    background: var(--bg-secondary);
+.techIcon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.techIcon:hover {
+    transform: scale(1.1);
+    border-color: var(--glass-border-hover);
+}
+
+.techBadge {
     font-size: 0.75rem;
-    color: var(--text-secondary);
-    border-radius: 100px;
+    font-weight: 500;
+    padding: 0.4rem 0.75rem;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 8px;
+    color: var(--accent-purple, var(--accent));
 }
 
+/* View Project Button */
+.viewBtn {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--accent-indigo, #6366f1), var(--accent-purple, #8b5cf6));
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.viewBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+/* ============================================
+   PROJECT MODAL
+   ============================================ */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    background: var(--bg-base, var(--bg-primary));
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 2rem 0;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.closeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+}
+
+.modalContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.modalImage {
+    position: relative;
+    width: 100%;
+    height: 350px;
+}
+
+.modalBody {
+    padding: 2.5rem;
+}
+
+.modalCategory {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-purple, var(--accent));
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.4rem 0.8rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.modalTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.modalSection {
+    margin-bottom: 2rem;
+}
+
+.modalSection h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--accent-purple, var(--accent));
+    margin-bottom: 0.75rem;
+}
+
+.modalSection p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.featureList {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.featureList li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+}
+
+.featureList svg {
+    color: #10B981;
+    flex-shrink: 0;
+}
+
+.modalTech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.resultsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.resultCard {
+    text-align: center;
+    padding: 1.25rem;
+    background: var(--glass-bg, rgba(255, 255, 255, 0.05));
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+}
+
+.resultStat {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-purple, var(--accent));
+    margin-bottom: 0.25rem;
+}
+
+.resultLabel {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.modalTestimonial {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--glass-bg, rgba(255, 255, 255, 0.05));
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+}
+
+.modalTestimonial p {
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.testimonialAuthor {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.authorAvatar {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent-indigo, #6366f1), var(--accent-purple, #8b5cf6));
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 50%;
+}
+
+.testimonialAuthor strong {
+    display: block;
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+}
+
+.testimonialAuthor span {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.modalCTA {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.ctaPrimary {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, var(--accent-indigo, #6366f1), var(--accent-purple, #8b5cf6));
+    color: white;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.ctaPrimary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+}
+
+.ctaSecondary {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.ctaSecondary:hover {
+    border-color: var(--accent-indigo, #6366f1);
+    color: var(--accent-indigo, #6366f1);
+}
+
+/* ============================================
+   LIGHT THEME ADJUSTMENTS
+   ============================================ */
+:global([data-theme="light"]) .card {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+:global([data-theme="light"]) .card:hover {
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15), 0 0 50px rgba(99, 102, 241, 0.08);
+}
+
+:global([data-theme="light"]) .overlay {
+    background: linear-gradient(180deg, transparent 40%, #ffffff 100%);
+}
+
+:global([data-theme="light"]) .modal {
+    background: white;
+}
+
+:global([data-theme="light"]) .modalTestimonial,
+:global([data-theme="light"]) .resultCard {
+    background: #f8fafc;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 @media (max-width: 1024px) {
     .grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .imageWrapper {
+        height: 200px;
+    }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
     .grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .card {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .imageWrapper {
+        height: 180px;
+    }
+
+    .content {
+        padding: 1rem 1.25rem 1.25rem;
+    }
+
+    .title {
+        font-size: 1.125rem;
+    }
+
+    .description {
+        font-size: 0.875rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .techIcon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .viewBtn {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.8125rem;
+    }
+
+    .modalOverlay {
+        padding: 1rem;
+    }
+
+    .modalImage {
+        height: 250px;
+    }
+
+    .modalBody {
+        padding: 1.5rem;
+    }
+
+    .modalTitle {
+        font-size: 1.5rem;
+    }
+
+    .featureList {
+        grid-template-columns: 1fr;
+    }
+
+    .resultsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .modalCTA {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 4rem 0 3rem;
+    }
+
+    .heroText {
+        font-size: 1rem;
+    }
+
+    .imageWrapper {
+        height: 160px;
+    }
+
+    .content {
+        padding: 0.875rem 1rem 1rem;
+    }
+
+    .title {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .category {
+        font-size: 0.625rem;
+    }
+
+    .description {
+        font-size: 0.8125rem;
+        line-height: 1.4;
+        margin-bottom: 0.5rem;
+    }
+
+    .technologies {
+        gap: 0.5rem;
+    }
+
+    .techIcon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .viewBtn {
+        margin-top: 0.75rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .modalImage {
+        height: 200px;
+    }
+
+    .modalBody {
+        padding: 1.25rem;
+    }
+
+    .modalTitle {
+        font-size: 1.25rem;
     }
 }
